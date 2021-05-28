@@ -1,3 +1,37 @@
+# This is a modification of Swar's Chia Plot Manager
+
+Swar's original one can be found here: https://github.com/swar/Swar-Chia-Plot-Manager
+
+all credits for this Software go to him :)
+
+
+
+## Changes:
+
+ no Changes to Core functionalities
+
+ necessary modifications to jobs.py (the Data evaluation part) for passing more Variables etc. 
+
+ quite a lot of modifications to print.py (the terminal output part)
+
+
+-colored drive table to display lines green while < 75% of drive is used, yellow while 75% - 89% and red while > 90% (headers get a bit messed up but still easy to read, see screenshot)
+
+-colored background of status Text to green if Manager is running and red if it's not for better visibility (yes this line is very important...)
+
+-added a table that displays the phases for each plot (time it took for completed phases, progress in % for incomplete ones)
+
+-added estimation how long the plot will take at all and time remaining without copying aka. p5 (gets more accurate the longer the plot runs, relatively reliable at > 20% )
+
+-removed phase indicator and times as they are in the phase table, reordered plot table (see screnshot)
+
+
+![The view of the modded manager](https://i.imgur.com/XTwaeny.jpeg "View")
+
+
+# Original Readme
+
+
 # Swar's Chia Plot Manager 
 
 #### A plot manager for Chia plotting: https://www.chia.net/
