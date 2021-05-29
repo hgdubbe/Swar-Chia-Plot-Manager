@@ -15,8 +15,8 @@ all credits for this Software go to him :)
  quite a lot of modifications to print.py (the terminal output part)
 
 
-#### -colored drive table
-to display lines green while < 75% of drive is used, yellow while 75% - 89% and red while > 90% (headers get a bit messed up but still easy to read, see screenshot)
+#### -color indicators for drive usage
+dot is green while < 75% of drive is used, yellow while 75% - 89% and red while > 90% (headers still get a bit messed up, see screenshot)
 
 #### -drivetable shows free space instead of used
 credits go to https://github.com/fiveangle/Swar-Chia-Plot-Manager/tree/critical_temp_disk_info
@@ -35,7 +35,7 @@ credits go to https://github.com/fiveangle/Swar-Chia-Plot-Manager/tree/critical_
 
 
 #### Screenshot:
-![The view of the modded manager](https://i.imgur.com/XTwaeny.jpeg "View")
+![The view of the modded manager](https://i.imgur.com/gp201MD.jpg "View")
 
 
 # Original Readme
