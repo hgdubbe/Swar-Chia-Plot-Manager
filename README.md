@@ -18,6 +18,9 @@ all credits for this Software go to him :)
 #### -colored drive table
 to display lines green while < 75% of drive is used, yellow while 75% - 89% and red while > 90% (headers get a bit messed up but still easy to read, see screenshot)
 
+#### -drivetable shows free space instead of used
+credits go to https://github.com/fiveangle/Swar-Chia-Plot-Manager/tree/critical_temp_disk_info
+
 #### -colored background of status Text 
  green if Manager is running and red if it's not for better visibility (yes this line is very important...)
 
