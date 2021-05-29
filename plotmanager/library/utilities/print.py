@@ -59,9 +59,9 @@ def phase_table(work, phase_time, current_phase=1):
                 percent_string += " "
         percent_string += str(work.progress[current_phase]) #assemble string
         output += f'| {percent_string}% ' #add string to output
-        for i in range(current_phase, 4):
+        for i in range(current_phase, 4): #add blanks for untouched phases
             output += blank_string
-    output += f' |'
+    output += f' |' #add final seperator and we're done
     return output
     
 def pretty_print_bytes(size, size_type, significant_digits=2, suffix=''):
@@ -132,7 +132,7 @@ def pretty_print_job_data(job_data):
 
 
 def get_drive_data(drives, running_work, job_data):
-    headers = ['type', 'drive', 'free', 'total', '%', '#', 'temp', 'dest']
+    headers = ['type', 'drive', 'free', 'total', '%', '#', 'temp', 'dest', ' ']
     rows = []
 
     pid_to_num = {}
@@ -200,23 +200,22 @@ def get_drive_data(drives, running_work, job_data):
                 display_total=f'{pretty_print_bytes(usage.total, "gb", 0, "GiB")}'
                 
             if usage.percent>90:
-                color = "\u001b[38;5;196m "
+                color = "\u001b[31;1m"
             else: 
                 if usage.percent>75:
-                    color = "\u001b[38;5;221m "
+                    color = "\u001b[33;1m"
                 else:
-                    color = "\u001b[38;5;150m "
+                    color = "\u001b[32;1m"
             row = [
-                f'{color}{drive_type}',
+                drive_type,
                 drive,
-                #f'{pretty_print_bytes(usage.used, "tb", 2, "TiB")}',
-                #f'{pretty_print_bytes(usage.total, "tb", 2, "TiB")}',
                 display_free,
                 display_total,
                 f'{usage.percent}%',
                 '/'.join(counts),
                 '/'.join(temp),
-                '/'.join(dest)+"\u001b[0m",
+                '/'.join(dest),
+                f'{color}■\u001b[0m',
             ]
             if has_temp2:
                 row.insert(-1, '/'.join(temp2))
@@ -251,7 +250,6 @@ def print_view(jobs, running_work, analysis, drives, next_log_check, view_settin
     else:
         status_msg = "Manager Status: \u001b[41;1m Stopped \u001b[0m"
     print (status_msg)
-    #print(f'Manager Status: {"\u001b[42;1m Running \u001b[0m" if manager_processes else "\u001b[41;1m Stopped \u001b[0m"}')
     print()
 
     if view_settings.get('include_drive_info'):
