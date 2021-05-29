@@ -35,7 +35,7 @@ credits go to https://github.com/fiveangle/Swar-Chia-Plot-Manager/tree/critical_
 
 
 #### Screenshot:
-![The view of the modded manager](https://i.imgur.com/gp201MD.jpg "View")
+![The view of the modded manager](https://i.imgur.com/MI4Nxst.jpg "View")
 
 
 # Original Readme
