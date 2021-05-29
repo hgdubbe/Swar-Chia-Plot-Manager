@@ -10,7 +10,7 @@ all credits for this Software go to him :)
 
  no Changes to Core functionalities
 
- necessary modifications to jobs.py (the Data evaluation part) for passing more Variables etc. 
+ necessary modifications to log.py (the Data evaluation part) for passing more Variables etc. 
 
  quite a lot of modifications to print.py (the terminal output part)
 
