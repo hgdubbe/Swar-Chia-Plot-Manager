@@ -47,21 +47,21 @@ def phase_table(work, phase_time, current_phase=1):
     blank_string = "|     - "
     percent_string = '' 
     output = ''
-    #fill in times by iterating though phase_time
+    #fill in times by iterating though phase_time, easier than join()
     if len(phase_time) > 0:
         for i in range(0, len(phase_time)):
             output += f'| {phase_time[i]} '
     
     #alignment %
-    if current_phase != 5: #phase 5 doesnt need %
+    if current_phase != 5:
         if len(str(work.progress[current_phase])) < 5: #add spaces to align percentages to times (right)
             for i in range( 1, 5 - len(str(work.progress[current_phase]))):
                 percent_string += " "
         percent_string += str(work.progress[current_phase]) #assemble string
         output += f'| {percent_string}% ' #add string to output
-        for i in range(current_phase, 4): #add placeholder for untouched phases
+        for i in range(current_phase, 4):
             output += blank_string
-    output += ' |  ' #add final seperator and were done
+    output += f' |'
     return output
     
 def pretty_print_bytes(size, size_type, significant_digits=2, suffix=''):
@@ -126,12 +126,13 @@ def get_job_data(jobs, running_work, view_settings, as_json=False):
 
 def pretty_print_job_data(job_data):
     headers = ['num', 'job', 'k', 'plot_id', 'pid', 'temp_size', 'start', 'overall', 'elapsed', 'remaining', 'phase_progress', 'progress']
+
     rows = [headers] + job_data
     return pretty_print_table(rows)
 
 
 def get_drive_data(drives, running_work, job_data):
-    headers = ['type', 'drive', 'used', 'total', '%', '#', 'temp', 'dest']
+    headers = ['type', 'drive', 'free', 'total', '%', '#', 'temp', 'dest']
     rows = []
 
     pid_to_num = {}
@@ -171,7 +172,6 @@ def get_drive_data(drives, running_work, job_data):
                     temp2.append(pid_to_num[str(running_work[job].pid)])
                 if running_work[job].destination_drive == drive:
                     dest.append(pid_to_num[str(running_work[job].pid)])
-
             try:
                 usage = psutil.disk_usage(drive)
             except (FileNotFoundError, TypeError):
@@ -188,6 +188,17 @@ def get_drive_data(drives, running_work, job_data):
                 del counts[1]
                 del drive_types[drive][1]
             drive_type = '/'.join(drive_types[drive])
+            
+            if usage.free >= 1099511627776:
+                display_free=f'{pretty_print_bytes(usage.free, "tb", 2, "TiB")}'
+            else:
+                display_free=f'{pretty_print_bytes(usage.free, "gb", 0, "GiB")}'
+
+            if usage.total >= 1099511627776:
+                display_total=f'{pretty_print_bytes(usage.total, "tb", 2, "TiB")}'
+            else:
+                display_total=f'{pretty_print_bytes(usage.total, "gb", 0, "GiB")}'
+                
             if usage.percent>90:
                 color = "\u001b[38;5;196m "
             else: 
@@ -198,8 +209,10 @@ def get_drive_data(drives, running_work, job_data):
             row = [
                 f'{color}{drive_type}',
                 drive,
-                f'{pretty_print_bytes(usage.used, "tb", 2, "TiB")}',
-                f'{pretty_print_bytes(usage.total, "tb", 2, "TiB")}',
+                #f'{pretty_print_bytes(usage.used, "tb", 2, "TiB")}',
+                #f'{pretty_print_bytes(usage.total, "tb", 2, "TiB")}',
+                display_free,
+                display_total,
                 f'{usage.percent}%',
                 '/'.join(counts),
                 '/'.join(temp),
@@ -212,7 +225,6 @@ def get_drive_data(drives, running_work, job_data):
         headers.insert(-1, 'temp2')
     rows = [headers] + rows
     return pretty_print_table(rows)
-
 
 def print_json(jobs, running_work, view_settings):
     get_job_data(jobs=jobs, running_work=running_work, view_settings=view_settings, as_json=True)
