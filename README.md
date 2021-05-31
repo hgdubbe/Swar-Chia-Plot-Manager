@@ -27,7 +27,7 @@ credits go to https://github.com/fiveangle/Swar-Chia-Plot-Manager/tree/critical_
 #### -added a table that displays the phases for each plot
  (time it took for completed phases, progress in % for incomplete ones)
 
-#### -added estimation how long the plot will take at all and time remaining without copying aka. p5 
+#### -added estimation how long the plot will take at all and time remaining without copying aka. p5  *
  (gets more accurate the longer the plot runs, relatively reliable at > 20% )
 
 #### -removed phase indicator and times as they are in the phase table, reordered plot table (see screnshot)
@@ -37,6 +37,8 @@ credits go to https://github.com/fiveangle/Swar-Chia-Plot-Manager/tree/critical_
 #### Screenshot:
 ![The view of the modded manager](https://i.imgur.com/MI4Nxst.jpg "View")
 
+
+*time estimations heavily rely on correct phase weights. to get accurate results remove all logs with oder configs (put them in another folder or something), make sure you got enough logs with your current config (i'd say like 20), run "manager.py analyze_logs" and put those numbers in the config.yaml file 
 
 # Original Readme
 
