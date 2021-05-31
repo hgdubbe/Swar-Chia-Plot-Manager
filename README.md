@@ -38,7 +38,7 @@ credits go to https://github.com/fiveangle/Swar-Chia-Plot-Manager/tree/critical_
 ![The view of the modded manager](https://i.imgur.com/MI4Nxst.jpg "View")
 
 
-*time estimations heavily rely on correct phase weights. to get accurate results remove all logs with oder configs (put them in another folder or something), make sure you got enough logs with your current config (i'd say like 20), run "manager.py analyze_logs" and put those numbers in the config.yaml file 
+	*time estimations heavily rely on correct phase weights. to get accurate results remove all logs with older configs (put them in another folder or something), make sure you got enough logs with your current config (i'd say like 20), run "manager.py analyze_logs" and put those numbers in the config.yaml file 
 
 # Original Readme
 
